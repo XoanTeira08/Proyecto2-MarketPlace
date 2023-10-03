@@ -1,0 +1,17 @@
+{% extends 'main/base.html' %}
+
+{% block content %}
+<h3>Registrar cuenta</h3>
+<br>
+<form action="" method="post">
+    {% csrf_token %}
+
+    {{form.username}}
+    {{form.emai}}
+    {{form.password1}}
+    {{form.password2}}
+
+    <input class="btn btnPrimary" type="submit">
+
+</form>
+{% endblock %}

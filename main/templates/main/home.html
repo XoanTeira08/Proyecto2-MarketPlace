@@ -1,0 +1,53 @@
+{% extends 'main/base.html' %}
+{% load static %}
+
+<!-- ================================
+Start SEO blocks
+================================= -->
+{% block title %}{% endblock %}
+{% block decription %}{% endblock %}
+{% block keywords %}{% endblock %}
+<!-- ================================
+END SEO blocks
+================================= -->
+
+<!-- ================================
+Start CSS blocks
+================================= -->
+{% block extend_header %}{% endblock %}
+<!-- ================================
+END CSS blocks
+================================= -->
+
+<!-- ================================
+Start script blocks
+================================= -->
+{% block extend_footer %}{% endblock %}
+<!-- ================================
+END script blocks
+================================= -->
+
+<!-- ================================
+Start Content
+================================= -->
+{% block content %}
+<br>
+<section>
+    <div class="row">
+    <div class="card" style="width: 18rem;">
+        <img src="/static/images/Electronicos.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        </div>
+    </div>
+
+    <div class="card" style="width: 18rem;">
+        <img src="/static/images/Ropa.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        </div>
+    </div>
+
+    </div>
+</section>
+{% endblock %}
