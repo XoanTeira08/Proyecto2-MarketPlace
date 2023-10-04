@@ -1,0 +1,36 @@
+<!–- Cargar css y extras -–>
+{% extends 'main/base.html' %}
+{% load static %}
+{% block title %}Categorias{% endblock %}
+
+{% block content %}
+
+
+
+<!–- Titulo -–>
+<h2>Categorias</h2>
+
+<!–- Mostrar datos de la lista -–>
+{% for categoria in categorias %}
+
+    <a href="{% url 'categorias:categoryDetail' slug=categoria.slug %}">
+
+        <div class="card border-dark mb-3" style="max-width: 540px;">
+            <div class="row g-0">
+                <div class="col-md-4">
+                    <img src="{{ categoria.imagen.url }}" class="img-fluid rounded-start" alt="...">
+                </div>
+                <div class="col-md-8">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ categoria.nombre }}</h5>
+                        <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+                    </div>
+                </div>
+            </div>
+        </div>  
+
+    </a> 
+
+{% endfor %}
+
+{% endblock %}
