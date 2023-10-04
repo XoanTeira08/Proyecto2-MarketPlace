@@ -1,0 +1,14 @@
+<!–- Cargar css y extras -–>
+{% extends 'main/base.html' %}
+{% load static %}
+{% block title %}Categorias{% endblock %}
+
+{% block content %}
+
+<!–- Titulo -–>
+<h2>{{ categoria.nombre }}</h2>
+
+<!–- Descripcion de la categoria -–>
+<p>{{ categoria.descripcion }}</p>
+
+{% endblock %}

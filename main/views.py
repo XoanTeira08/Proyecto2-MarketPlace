@@ -9,9 +9,6 @@ from .forms import CreateUserForm, LoginForm
 def home(request):
     return render(request, 'main/home.html')
 
-def categories(request):
-    return render(request, 'main/categories.html')
-
 def loginPage(request):
     if request.user.is_authenticated:
         return redirect("main:home")
