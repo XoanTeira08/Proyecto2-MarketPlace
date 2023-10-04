@@ -26,10 +26,14 @@ def loginPage(request):
                 login(request, user)
                 return redirect("main:home")
             else:
-                messages.info(request, 'Username OR password is incorrect')
+                messages.info(request, 'Usuraio o contraseña incorrecta')
         context={}
         return render(request, 'main/registration/login.html',context)
     
+
+def logoutUser(request):
+    logout(request)
+    return redirect("main:login")
 
 def registerPage(request):
     if request.user.is_authenticated:
