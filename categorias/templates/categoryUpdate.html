@@ -1,0 +1,21 @@
+<!–- Cargar css y extras -–>
+{% extends 'main/base.html' %}
+{% load static %}
+{% block title %}Categorias{% endblock %}
+
+{% block content %}
+<!–- Titulo -–>
+<br>
+    <h1 style="text-align:center">Editar Categoria</h1>
+<br>
+
+<!–- Formulario para editar una categoria -–>
+<form method="POST" enctype="multipart/form-data">
+
+    {% csrf_token %}
+
+    {{ form.as_p }}
+
+    <button type="submit" class="btn btn-primary">Editar</button>
+</form>
+{% endblock %}
