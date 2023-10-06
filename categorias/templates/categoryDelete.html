@@ -1,0 +1,24 @@
+<!–- Cargar css y extras -–>
+{% extends 'main/base.html' %}
+{% load static %}
+{% block title %}Categorias{% endblock %}
+
+{% block content %}
+
+<!–- Titulo -–>
+<br>
+    <h1 style="text-align:center">Eliminar Categoria</h1>
+<br>
+
+<!–- Formulario para eliminar una categoria -–>
+<form method="POST" enctype="multipart/form-data">
+
+    {% csrf_token %}
+
+    <p>Estas seguro de eliminar esta categoria?</p>
+
+    <button type="submit" class="btn btn-danger">Eliminar</button>
+    <button class="btn btn-primary">Cancelar</button>
+</form>
+
+{% endblock %}

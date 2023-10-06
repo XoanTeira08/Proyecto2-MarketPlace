@@ -3,6 +3,8 @@ from django.contrib import messages
 from django.shortcuts import redirect
 from .models import Categoria
 from django.views import generic
+from .forms import CategoriaForm
+from django.urls import reverse
 
 # Create your views here.
 class CategoriaListView(generic.ListView):
@@ -18,13 +20,14 @@ class CategoriaDetailView(generic.DetailView):
 class CategoriaCreateView(generic.CreateView):
     model = Categoria
     template_name = 'categoryCreate.html'
-    fields = ['nombre', 'descripcion']
+    form_class = CategoriaForm
 
     def form_valid(self, form):
-        categoria = form.save(commit=False)
-        categoria.save()
+        return super().form_valid(form)
+    
+    def get_success_url(self):
         messages.success(self.request, 'Categoria creada con exito')
-        return redirect('categorias')
+        return reverse('categorias:categoryList')
 
 class CategoriaUpdateView(generic.UpdateView):
     model = Categoria
@@ -35,14 +38,24 @@ class CategoriaUpdateView(generic.UpdateView):
         categoria = form.save(commit=False)
         categoria.save()
         messages.success(self.request, 'Categoria actualizada con exito')
-        return redirect('categorias')
+        return super().form_valid(form)
+    
+    def get_success_url(self):
+        return reverse('categorias:categoryList')
 
 class CategoriaDeleteView(generic.DeleteView):
     model = Categoria
     template_name = 'categoryDelete.html'
     context_object_name = 'categoria'
-    success_url = '/categorias/'
 
     def delete(self, request, *args, **kwargs):
         messages.success(self.request, 'Categoria eliminada con exito')
-        return super(CategoriaDeleteView, self).delete(request, *args, **kwargs)
+        return super().delete(request, *args, **kwargs)
+    
+    def form_valid(self, form):
+        messages.success(self.request, 'Categoria eliminada con exito')
+        return super().form_valid(form)
+    
+    def get_success_url(self):
+        return reverse('categorias:categoryList')
+
