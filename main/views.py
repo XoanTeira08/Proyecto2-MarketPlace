@@ -4,10 +4,12 @@ from django.contrib import messages
 from django.shortcuts import redirect
 from django.contrib.auth import authenticate,login,logout
 from .forms import CreateUserForm, LoginForm
+from categorias.models import Categoria
 
 # Create your views here.
 def home(request):
-    return render(request, 'main/home.html')
+    category = Categoria.objects.all()[:3]
+    return render(request, 'main/home.html', {'category':category})
 
 def loginPage(request):
     if request.user.is_authenticated:
@@ -23,10 +25,14 @@ def loginPage(request):
                 login(request, user)
                 return redirect("main:home")
             else:
-                messages.info(request, 'Username OR password is incorrect')
+                messages.info(request, 'Usuario o contraseña incorrecta')
         context={}
         return render(request, 'main/registration/login.html',context)
     
+
+def logoutUser(request):
+    logout(request)
+    return redirect("main:login")
 
 def registerPage(request):
     if request.user.is_authenticated:

@@ -30,6 +30,18 @@
                              <input class="btn btn-primary btn-lg" type="submit" value="Login">
                            </div>
                 </form>
+                {% for message in messages %}
+                <p id="messages"> {{message}}</p>
+            {% endfor %}
 </div>
-            
+
+
+    <div class="mt-4">
+        <div class="d-flex justify-content-center links">
+            No tienes cuenta? <a href="{% url 'main:register' %}" class="ml-2"> Registrate</a>
+        </div>
+    </div>
+
+
+    
 {% endblock %}
