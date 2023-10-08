@@ -5,13 +5,41 @@
 
 {% block content %}
 
-<!–- Titulo -–>
-<br>
-    <h1>{{ categoria.nombre }}</h1>
 <br>
 
-<!–- Descripcion de la categoria -–>
-<p>{{ categoria.descripcion }}</p>
+<div class="card">
+    <div class="card-body">
+        
+        <!–- Titulo -–>
+        <h1 class="card-title" style="text-align: center;">{{ categoria.nombre }}</h1>
+
+        <!–- Descripcion -–>
+        <p class="card-text" style="text-align: center;">{{ categoria.descripcion }}</p>
+    </div>
+
+    <!–- Imagen -–>
+    {% if categoria.imagen %}
+        <img src="{{ categoria.imagen.url }}" class="rounded mx-auto d-block" alt="..." style="width: 50%; height: 50%;">
+    {% endif %}
+
+    <br>
+
+    <!–- Botones -–>
+    <div class="d-grid gap-2 d-md-block" style="align-self: center;">
+        <!–- Boton para editar una categoria -–>
+        <a href="{% url 'categorias:categoryUpdate' slug=categoria.slug %}" class="btn btn-primary">Editar</a>
+
+        <!–- Boton para borrar una categoria -–>
+        <a href="{% url 'categorias:categoryDelete' slug=categoria.slug %}" class="btn btn-danger">Eliminar</a>
+    </div>
+    
+    <br>
+
+    <!–- Boton para regresar al menu -–>
+    <a href="{% url 'categorias:categoryList' %}" class="btn btn-primary" style="width: 10%; align-self: center;">Regresar</a>
+    <br>
+</div>
+
 <br>
 
 {% endblock %}

@@ -32,7 +32,7 @@ class CategoriaCreateView(generic.CreateView):
 class CategoriaUpdateView(generic.UpdateView):
     model = Categoria
     template_name = 'categoryUpdate.html'
-    fields = ['nombre', 'descripcion']
+    fields = ['nombre', 'descripcion', 'imagen']
 
     def form_valid(self, form):
         categoria = form.save(commit=False)
