@@ -4,14 +4,54 @@
 {% block title %}Categorias{% endblock %}
 
 {% block content %}
+<div class="card">
+    <div class="card-body">
+        
+        <!–- Titulo -–>
+        <h1 class="card-title" style="text-align: center;">{{ categoria.nombre }}</h1>
 
-<!–- Titulo -–>
-<br>
-    <h1>{{ categoria.nombre }}</h1>
-<br>
+        <!–- Descripcion -–>
+        <p class="card-text" style="text-align: center;">{{ categoria.descripcion }}</p>
+    </div>
 
-<!–- Descripcion de la categoria -–>
-<p>{{ categoria.descripcion }}</p>
+    <!–- Imagen -–>
+    {% if categoria.imagen %}
+        <img src="{{ categoria.imagen.url }}" class="rounded mx-auto d-block" alt="..." style="width: 50%; height: 50%;">
+    {% endif %}
+
+    <br>
+
+    <!–- Botones -–>
+    <div class="d-grid gap-2 d-md-block" style="align-self: center;">
+        <!–- Boton para editar una categoria -–>
+        <a href="{% url 'categorias:categoryUpdate' slug=categoria.slug %}" class="btn btn-primary">Editar</a>
+
+        <!–- Boton para borrar una categoria -–>
+        <a href="{% url 'categorias:categoryDelete' slug=categoria.slug %}" class="btn btn-danger">Eliminar</a>
+    </div>
+
+
 <br>
+<!–- Productos -–>
+<div class="container">
+    <h2 class="display-6">Productos</h2>
+    {% for product in categoria.product_set.all %}
+    <div class="card mb-3" style="max-width: 540px;">
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img src="{{product.imagen.url}}" class="img-fluid rounded-start" alt="...">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">{{product.name}}</h5>
+              <p class="card-text">{{product.description}}</p>
+              <p class="card-text"><small class="text-body-secondary">{{product.price}}</small></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+</div>
+
 
 {% endblock %}
