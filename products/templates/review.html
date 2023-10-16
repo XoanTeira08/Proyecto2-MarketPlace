@@ -1,0 +1,23 @@
+<!–- Cargar css y extras -–>
+{% extends 'main/base.html' %}
+{% load static %}
+{% block title %}Review{% endblock %}
+
+{% block content %}
+
+<!–- Titulo -–>
+<br>
+    <h1 style="text-align:center">Hacer Review</h1>
+<br>
+
+
+<form method="POST" enctype="multipart/form-data">
+
+    {% csrf_token %}
+    
+    {{ form.as_p }}
+
+    <button type="submit" class="btn btn-primary" style="align-self: center;">Crear</button>
+</form>
+
+{% endblock %}

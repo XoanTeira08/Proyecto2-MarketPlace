@@ -1,0 +1,37 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block title %}Producto{% endblock %}
+
+{% block content %}
+<div class="container">
+  <!–-Productos-–>
+  <div class="card mb-3">
+    <img src="{{product.imagen.url}}" class="card-img-top" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">{{product.name}}</h5>
+      <p class="card-text">{{product.description}}</p>
+      <h6 class="card-title">{{product.price}}</h6>
+    </div>
+  </div>
+  <h3 class="display-6">Reviews</h3>
+  <!--Reviews-->
+  {% for review in reviews %}
+  <div class="card mb-3" >
+    <div class="card-body">
+      <!--<h5 class="card-title">Card title</h5>-->
+      <h6 class="card-subtitle mb-2 text-body-secondary">Puntaje: {{review.score}}</h6>
+      <p class="card-text">{{ review.review}}</p>
+      <p class="card-text"><small class="text-body-secondary">{{review.created_at}}</small></p>
+      <!--<a href="#" class="card-link">Car</a>-->
+    </div>
+  </div>
+  {% endfor %}
+  <br>
+  <!–- Boton para hacer reviews-–>
+  <a href="{% url 'products:reviewCreate' nombre_producto=product.slug %}" class="btn btn-primary">Hacer Review</a>
+
+</div>
+
+    
+{% endblock %}
+    

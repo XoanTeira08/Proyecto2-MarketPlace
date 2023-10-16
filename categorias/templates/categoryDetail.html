@@ -35,6 +35,7 @@
 <div class="container">
     <h2 class="display-6">Productos</h2>
     {% for product in categoria.product_set.all %}
+    <a href="{% url 'products:productDetail' slug=product.slug %}">
     <div class="card mb-3" style="max-width: 540px;">
         <div class="row g-0">
           <div class="col-md-4">
@@ -49,7 +50,14 @@
           </div>
         </div>
       </div>
+    </a>
     {% endfor %}
+    <!–- Boton para agregar productos-–>
+        <a href="{% url 'products:productCreate' slug=categoria.slug %}" class="btn btn-primary">Agregar Producto</a>
+
+
+
+
 </div>
 
 
