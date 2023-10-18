@@ -10,14 +10,24 @@
     <h1 style="text-align:center">Hacer Review</h1>
 <br>
 
+<!–- Formulario para hacer review -–>
+<div class="container mx-auto d-flex justify-content-center">
+    <form method="POST" enctype="multipart/form-data">
 
-<form method="POST" enctype="multipart/form-data">
-
-    {% csrf_token %}
+        {% csrf_token %}
+        
+        <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Review</label>
+            {{ form.review }}
+        </div>
     
-    {{ form.as_p }}
-
-    <button type="submit" class="btn btn-primary" style="align-self: center;">Crear</button>
-</form>
+        <div class="input-group mb-3">
+            <span class="input-group-text">⭐</span>
+            {{ form.score }}
+            <span class="input-group-text"></span>
+        </div>
+        <button type="submit" class="btn btn-outline-success" style="align-self: center;">Crear</button>
+    </form>
+</div>
 
 {% endblock %}

@@ -3,18 +3,34 @@
 {% block title %}Producto{% endblock %}
 
 {% block content %}
+
+<!–- Titulo -–>
+<br>
 <div class="container">
   <!–-Productos-–>
   <div class="card mb-3">
-    <img src="{{product.imagen.url}}" class="card-img-top" alt="...">
+
+    <!–- Imagen -–>
+    {% if product.imagen %}
+      <img src="{{product.imagen.url}}" class="card-img-top" alt="...">
+    {% endif %}
     <div class="card-body">
       <h5 class="card-title">{{product.name}}</h5>
       <p class="card-text">{{product.description}}</p>
       <h6 class="card-title">{{product.price}}</h6>
+
+      <!–- Boton para editar-–>
+      <a href="{% url 'products:productUpdate' slug=product.slug %}" class="btn btn-outline-primary">Editar</a>
+
+      <!–- Boton para eliminar-–>
+      <a href="{% url 'products:productDelete' slug=product.slug %}" class="btn btn-outline-danger">Eliminar</a>
+      
     </div>
   </div>
+
+  <!–- Reviews-–>
+  <br>
   <h3 class="display-6">Reviews</h3>
-  <!--Reviews-->
   {% for review in reviews %}
   <div class="card mb-3" >
     <div class="card-body">
@@ -27,11 +43,11 @@
   </div>
   {% endfor %}
   <br>
+  
   <!–- Boton para hacer reviews-–>
-  <a href="{% url 'products:reviewCreate' nombre_producto=product.slug %}" class="btn btn-primary">Hacer Review</a>
+  <a href="{% url 'products:reviewCreate' nombre_producto=product.slug %}" class="btn btn-outline-primary">Hacer Review</a>
 
 </div>
 
-    
 {% endblock %}
     

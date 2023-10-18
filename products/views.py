@@ -44,18 +44,16 @@ class ProductDetailView(generic.DetailView):
         context['reviews'] = reviews
         return context
 
-
-
 class reviewCreateView(generic.CreateView):
     model = Reviews
     template_name = 'review.html'
     form_class = ReviewForm
 
     def get_context_data(self, **kwargs):
-     context = super(reviewCreateView, self).get_context_data(**kwargs)
-     context['product'] = Product.objects.get(slug=self.kwargs['nombre_producto'])
-     print(context['product'])
-     return context
+        context = super(reviewCreateView, self).get_context_data(**kwargs)
+        context['product'] = Product.objects.get(slug=self.kwargs['nombre_producto'])
+        print(context['product'])
+        return context
     
     def form_valid(self, form):
         form.instance.product= Product.objects.get(slug=self.kwargs['nombre_producto'])
@@ -68,3 +66,25 @@ class reviewListView(generic.ListView):
     model = Reviews
     template_name = 'productDetail.html'
     context_object_name = 'reviews'
+
+class ProductUpdateView (generic.UpdateView):
+    model = Product
+    template_name = 'productUpdate.html'
+    fields = ['name', 'description', 'price', 'category', 'imagen']
+
+    def form_valid(self, form):
+        product = form.save(commit=False)
+        product.save()
+        messages.success(self.request, 'Producto editado con exito')
+        return super().form_valid(form)
+    
+    def get_success_url(self):
+        return reverse('categorias:categoryList')
+    
+class ProductDeleteView (generic.DeleteView):
+    model = Product
+    template_name = 'productDelete.html'
+    context_object_name = 'product'
+
+    def get_success_url(self):
+        return reverse('categorias:categoryList')

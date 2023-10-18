@@ -10,12 +10,28 @@
 <br>
 
 <!–- Formulario para editar una categoria -–>
-<form method="POST" enctype="multipart/form-data">
+<div class="container mx-auto justify-content-center d-flex">
+    <form method="post" enctype="multipart/form-data">
 
-    {% csrf_token %}
+        {% csrf_token %}
 
-    {{ form.as_p }}
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Nombre</label>
+            {{ form.nombre }}
+        </div>
 
-    <button type="submit" class="btn btn-primary" style="align-self: center;">Editar</button>
-</form>
+        <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Descripcion</label>
+            {{ form.descripcion }}
+        </div>
+
+        <div class="mb-3">
+            <label for="formFile" class="form-label">Imagen</label>
+            {{ form.imagen }}
+        </div>
+
+        <button type="submit" class="btn btn-outline-success" style="align-self: center;">Editar</button>
+    </form>
+</div>
+
 {% endblock %}

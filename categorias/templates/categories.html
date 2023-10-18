@@ -11,33 +11,34 @@
 <br>
 
 <!–- Mostrar datos de la lista -–>
-{% for categoria in categorias %}
+<div class="container">
+    {% for categoria in categorias %}
 
-    <a href="{% url 'categorias:categoryDetail' slug=categoria.slug %}">
+        <a href="{% url 'categorias:categoryDetail' slug=categoria.slug %}">
 
-        <div class="container" style="align-self: center; justify-content: center;">
-            <div class="card border-dark mb-3" style="width: 18rem; align-items: center; align-self: center;">
+            <div class="container mx-auto d-flex justify-content-center" >
+                <div class="card border-dark mb-3" style="width: 20rem; align-items: center; align-self: center;">
 
-                <!–- Imagen -–>
-                {% if categoria.imagen %}
-                    <img src="{{ categoria.imagen.url }}" class="card-img-top" alt="...">
-                {% endif %}
+                    <!–- Imagen -–>
+                    {% if categoria.imagen %}
+                        <img src="{{ categoria.imagen.url }}" class="card-img-top" alt="...">
+                    {% endif %}
 
-                <div class="card-body">
-                    <h4 class="card-title">{{ categoria.nombre }}</h4>
-                    <p class="card-text">{{ categoria.descripcion }}</p> 
+                    <div class="card-body">
+                        <h4 class="card-title">{{ categoria.nombre }}</h4>
+                        <p class="card-text">{{ categoria.descripcion }}</p> 
+                    </div>
                 </div>
             </div>
-        </div>
 
-    </a> 
+        </a> 
 
-{% endfor %}
+    {% endfor %}
 
-<!–- Boton para crear una nueva categoria -–>
-<br>
-<div class="d-flex justify-content-center">
-    <a href="{% url 'categorias:categoryCreate' %}" class="btn btn-primary">Crear nueva categoria</a>
+    <!–- Boton para crear una nueva categoria -–>
+    <br>
+    <div class="d-flex justify-content-center">
+        <a href="{% url 'categorias:categoryCreate' %}" class="btn btn-outline-primary">Crear nueva categoria</a>
+    </div>
 </div>
-
 {% endblock %}

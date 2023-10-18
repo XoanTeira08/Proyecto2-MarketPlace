@@ -1,47 +1,62 @@
+<!--Cargar CSS y Extras-->
 {% extends 'main/base.html' %}
 {% load static %}
 
 {% block content %}
 
 <br>
-<div class="container card p-5">
-        
-    <h3 id="form-title">Iniciar Sesion</h3>
-           
-                <form method="POST" action="">
-                    {% csrf_token %}
-                    <div class="input-group mb-3">
-                        <div class="input-group-append">
-                            <span class="input-group-text"><i class="fas fa-user"></i></span>
+
+<!--Login-->
+<div class="container mx-auto d-flex justify-content-center">
+    <div class="container card p-5 w-50">
+
+        <h3 id="form-title" style="text-align: center;">Iniciar Sesion</h3>
+        <br>
+
+        <form method="POST" action="">
+    
+        {% csrf_token %}
+            
+            <!--Username-->
+            <div class="form-floating mb-3">
+                <input type="text" class="form-control" id="floatingInput" placeholder="Username" name="username">
+                <label for="floatingInput">Username</label>
+            </div>
+            
+            <!--Password-->
+            <div class="form-floating">
+                <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password">
+                <label for="floatingPassword">Password</label>
+            </div>
+            
+            <!--Errores-->
+            <br>
+            <div class="container">
+                    {% if error %}
+                        <div class="alert alert-warning" role="alert">
+                            {{error}}   
                         </div>
+                    {% endif %}
+            </div>
 
-                        <input type="text" name="username" placeholder="Username..." class="form-control">
-                    </div>
-
-                    <div class="input-group mb-2">
-                        <div class="input-group-append">
-                            <span class="input-group-text"><i class="fas fa-key"></i></span>
-                        </div>
-
-                            <input type="password" name="password" placeholder="Password..." class="form-control" >
-                    </div>
-
-                        <div class="d-flex justify-content-center mt-3 login_container">
-                             <input class="btn btn-primary btn-lg" type="submit" value="Login">
-                           </div>
-                </form>
-                {% for message in messages %}
-                <p id="messages"> {{message}}</p>
-            {% endfor %}
+            <!--Boton-->
+            <br>
+            <div class="d-flex justify-content-center mt-3 login_container">
+                <input class="btn btn-outline-success" type="submit" value="Login">
+            </div>
+        </form>
+    </div>
 </div>
 
 
-    <div class="mt-4">
-        <div class="d-flex justify-content-center links">
-            No tienes cuenta? <a href="{% url 'main:register' %}" class="ml-2"> Registrate</a>
-        </div>
+<!--Registro-->
+<div class="mt-4">
+    <div class="d-flex justify-content-center">
+        <h5>No tienes cuenta?</h5>
     </div>
+    <div class="d-flex justify-content-center links">
+        <a href="{% url 'main:register' %}" class="btn btn-link">Registrate</a>
+    </div>
+</div>
 
-
-    
 {% endblock %}

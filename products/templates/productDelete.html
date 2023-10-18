@@ -1,13 +1,13 @@
 <!–- Cargar css y extras -–>
 {% extends 'main/base.html' %}
 {% load static %}
-{% block title %}Categorias{% endblock %}
+{% block title %}Productos{% endblock %}
 
 {% block content %}
 
 <!–- Titulo -–>
 <br>
-    <h1 style="text-align:center">Eliminar Categoria</h1>
+    <h1 style="text-align:center">Eliminar Producto</h1>
 <br>
 
 <!–- Formulario para eliminar una categoria -–>
@@ -16,7 +16,7 @@
 
         {% csrf_token %}
     
-        <h5>Estas seguro de eliminar esta categoria?</h5>
+        <h5>Estas seguro de eliminar este producto?</h5>
         <br>
 
         <div class="container mx-auto d-flex justify-content-center">
@@ -25,6 +25,5 @@
         </div>
     </form>
 </div>
-<br>
 
 {% endblock %}

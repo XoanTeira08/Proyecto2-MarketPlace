@@ -16,7 +16,7 @@ class ProductsForm(ModelForm):
     widgets= {
         'name': forms.TextInput(attrs={'class': 'form-control'}),
         'description': forms.Textarea(attrs={'class': 'form-control'}),
-        'price': forms.NumberInput(attrs={'class': 'form-control'}),
+        'price': forms.NumberInput(attrs={'class': 'form-control', 'min': 0, 'max': 10000}),
         'category': forms.Select(attrs={'class': 'form-control'}),
         'imagen': forms.FileInput(attrs={'class': 'form-control'}),
     }
@@ -35,5 +35,5 @@ class ReviewForm(ModelForm):
 
     widgets= {
         'review': forms.Textarea(attrs={'class': 'form-control'}),
-        'score': forms.IntegerField( widget=forms.NumberInput( attrs={'min': 1, 'max': 5})),
+        'score': forms.IntegerField(widget=forms.NumberInput(attrs={'min': 1, 'max': 5})),
     }
