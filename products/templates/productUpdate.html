@@ -7,15 +7,15 @@
 
 <!–- Titulo -–>
 <br>
-    <h1 style="text-align:center">Agregar Producto</h1>
+    <h1 style="text-align:center">Editar Producto</h1>
 <br>
 
-<!–- Formulario para agregar un nuevo producto -–>
-<div class="container d-flex mx-auto justify-content-center">
+<!–- Formulario -–>
+<div class="container mx-auto d-flex justify-content-center">
     <form method="POST" enctype="multipart/form-data">
 
         {% csrf_token %}
-        
+    
         <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">Nombre del producto</label>
             {{ form.name }}
@@ -38,8 +38,8 @@
             <label for="formFile" class="form-label">Imagen del producto</label>
             {{ form.imagen }}
         </div>
-
-        <button type="submit" class="btn btn-outline-success" style="align-self: center;">Agregar</button>
+    
+        <button type="submit" class="btn btn-outline-success" style="align-self: center;">Editar</button>
     </form>
 </div>
 
