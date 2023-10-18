@@ -32,13 +32,11 @@
             <!--Errores-->
             <br>
             <div class="container">
-                {% for field in form %}
-                    {% if field.errors %}
+                    {% if error %}
                         <div class="alert alert-warning" role="alert">
-                            {{message.errors}}  
+                            {{error}}   
                         </div>
                     {% endif %}
-                {% endfor %}
             </div>
 
             <!--Boton-->

@@ -12,6 +12,8 @@ def home(request):
     return render(request, 'main/home.html', {'category':category})
 
 def loginPage(request):
+    error = None
+
     if request.user.is_authenticated:
         return redirect("main:home")
     else:
@@ -25,8 +27,8 @@ def loginPage(request):
                 login(request, user)
                 return redirect("main:home")
             else:
-                messages.info(request, 'Usuario o contraseña incorrecta')
-        context={}
+                error = 'Usuario o contraseña incorrecta'
+        context={'error':error}
         return render(request, 'main/registration/login.html',context)
     
 
