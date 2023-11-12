@@ -36,9 +36,13 @@ Start Content
 <div class="text-center">
 <h1 class="display-4">Categorias mas compradas</h1>
 <div class="container">
+
   {% for cat in category %}
+
     <a href="{% url 'categorias:categoryDetail' slug=cat.slug %}">
+
     <div class="card mb-3">
+
         {% if cat.imagen %}
         <img src="{{cat.imagen.url}}" class="card-img-top" alt="...">
         {% endif %}
@@ -46,8 +50,11 @@ Start Content
           <h5 class="card-title">{{cat.nombre}}</h5>
           <p class="card-text">{{cat.descripcion}} </p>
         </div>
-      </div>
+
+    </div>
+
     </a>
+    
     {% endfor %}
 </div>
 </div>
