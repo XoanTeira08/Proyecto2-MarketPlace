@@ -28,6 +28,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+PAYPAL_TEST = True
 
 # Application definition
 
@@ -41,6 +42,7 @@ INSTALLED_APPS = [
     "main",
     "categorias",
     "products",
+    "paypal.standard.ipn",
 ]
 
 MIDDLEWARE = [
