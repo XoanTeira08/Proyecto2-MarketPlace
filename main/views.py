@@ -1,10 +1,11 @@
+from django.views import generic
 from django.shortcuts import render
-
 from django.contrib import messages
 from django.shortcuts import redirect
 from django.contrib.auth import authenticate,login,logout
 from .forms import CreateUserForm, LoginForm
 from categorias.models import Categoria
+from .models import CustomerSupport
 
 # Create your views here.
 def home(request):
@@ -52,3 +53,14 @@ def registerPage(request):
             
         context = {'form':form}
         return render(request, 'main/registration/register.html',context)
+
+class CustomerSupportView(generic.CreateView):
+    model = CustomerSupport
+    fields = ['name', 'phone','email', 'message']
+    template_name = 'main/customersupport.html'
+    success_url = '/'
+
+    def form_valid(self, form):
+        form.instance.user = self.request.user
+        return super().form_valid(form)
+    

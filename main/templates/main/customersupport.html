@@ -1,0 +1,44 @@
+<!–- Cargar css y extras -–>
+{% extends 'main/base.html' %}
+{% load static %}
+{% block title %}Categorias{% endblock %}
+
+{% block content %}
+
+<!–- Titulo -–>
+<br>
+    <h1 style="text-align:center">Atencion al cliente</h1>
+<br>
+
+<!–- Formulario para la atencion al cliente -–>
+<div class="container mx-auto d-flex justify-content-center">
+    <form method="POST" enctype="multipart/form-data">
+
+        {% csrf_token %}
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Nombre</label>
+            {{ form.name }}
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Telefono</label>
+            {{ form.phone }}
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Correo</label>
+            {{ form.email }}
+        </div>
+
+        <div class="mb-3">
+            <label for="exampleFormControlTextarea1" class="form-label">Mensaje</label>
+            {{ form.message }}
+        </div>
+
+        <button type="submit" class="btn btn-outline-success" style="align-self: center;">Enviar</button>
+    </form>
+</div>
+
+
+{% endblock %}
