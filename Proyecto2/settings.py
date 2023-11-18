@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "main",
     "categorias",
     "products",
+    "shops",
     "paypal.standard.ipn",
 ]
 

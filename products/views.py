@@ -2,6 +2,7 @@ from django.shortcuts import render
 from .models import Product, Reviews
 from .forms import ReviewForm
 from categorias.models import Categoria
+from shops.models import Shop
 from django.views import generic
 from django.urls import reverse
 from django.contrib import messages
@@ -41,9 +42,12 @@ class ProductDetailView(generic.DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         product = self.object  
-        reviews = Reviews.objects.filter(product=product)  
+        reviews = Reviews.objects.filter(product=product) 
+        context['shop'] = self.object.shop
         context['reviews'] = reviews
         return context
+    
+   
 
 class reviewCreateView(generic.CreateView):
     model = Reviews
@@ -58,6 +62,7 @@ class reviewCreateView(generic.CreateView):
     
     def form_valid(self, form):
         form.instance.product= Product.objects.get(slug=self.kwargs['nombre_producto'])
+        form.instance.user= self.request.user
         return super().form_valid(form)
     
     def get_success_url(self):

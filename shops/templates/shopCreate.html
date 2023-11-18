@@ -1,0 +1,36 @@
+<!–- Cargar css y extras -–>
+{% extends 'main/base.html' %}
+{% load static %}
+{% block title %}Categorias{% endblock %}
+
+{% block content %}
+
+<!–- Titulo -–>
+<br>
+    <h1 style="text-align:center">Crear Tienda</h1>
+<br>
+
+<!–- Formulario para crear una nueva tienda -–>
+<div class="container mx-auto d-flex justify-content-center">
+    <form method="POST" enctype="multipart/form-data">
+            
+        {% csrf_token %}
+
+        <div class="mb-3">
+            <label for="exampleFormControlInput1" class="form-label">Nombre de la tienda</label>
+            {{ form.name }}
+        </div>
+    
+
+    
+        <div class="mb-3">
+            <label for="formFile" class="form-label">Imagen de la categoria</label>
+            {{ form.imagen }}
+        </div>
+
+        <button type="submit" class="btn btn-outline-success" style="align-self: center;">Crear</button>
+    </form>
+</div>
+
+
+{% endblock %}

@@ -1,5 +1,6 @@
 from django.db import models
 from categorias.models import Categoria
+from shops.models import Shop
 from django.utils.text import slugify
 from django.contrib.auth.models import User
 
@@ -15,6 +16,7 @@ class Product(models.Model):
     price= models.DecimalField(max_digits=6, decimal_places=2)
     category= models.ForeignKey('categorias.Categoria', on_delete=models.CASCADE)
     imagen = models.ImageField(upload_to='products/', blank=True, null=True)
+    shop= models.ForeignKey('shops.Shop', on_delete=models.SET_NULL, null=True)
 
     def save (self, *args, **kwargs):
         if not self.id:
@@ -33,6 +35,7 @@ class Reviews(models.Model):
 
     product= models.ForeignKey(Product, on_delete=models.CASCADE)
     review= models.TextField()
+    user= models.ForeignKey(User, on_delete=models.CASCADE)
     created_at= models.DateTimeField(auto_now_add=True)
     score= models.IntegerField()
 

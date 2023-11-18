@@ -9,7 +9,7 @@ from .models import CustomerSupport
 
 # Create your views here.
 def home(request):
-    category = Categoria.objects.all()[:3]
+    category = Categoria.objects.all()
     return render(request, 'main/home.html', {'category':category})
 
 def loginPage(request):
