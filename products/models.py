@@ -3,6 +3,7 @@ from categorias.models import Categoria
 from shops.models import Shop
 from django.utils.text import slugify
 from django.contrib.auth.models import User
+import uuid
 
 # Create your models here.
 class Product(models.Model):
@@ -47,3 +48,19 @@ class Reviews(models.Model):
 
     def __str__(self) -> str:
         return f' {self.review} {self.created_at} {self.score} {self.product}'
+    
+class Cart (models.Model): 
+    id=models.UUIDField(primary_key=True, default=uuid.uuid4)
+    user= models.ForeignKey(User, on_delete=models.CASCADE)
+    completed= models.BooleanField(default=False)
+
+    def __str__(self):
+        return str(self.id) 
+    
+class CartItem (models.Model):
+    product= models.ForeignKey(Product, on_delete=models.CASCADE,related_name='items')
+    cart= models.ForeignKey(Cart, on_delete=models.CASCADE,related_name='cartitems')
+    quantity= models.IntegerField(default=0)
+
+    def __str__ (self):
+        return self.product.name

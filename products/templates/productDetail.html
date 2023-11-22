@@ -19,6 +19,9 @@
       <p class="card-text">{{product.description}}</p>
       <a href="{% url 'shops:shopDetail' slug=shop.slug %}"<h6 class="card-title"> Vendido por: {{product.shop}}</h6></a>
       <h6 class="card-title">{{product.price}}</h6>
+      
+      <!–- Boton para agregar al carrito-–>
+      <button class="btn btn-outline-primary" value="{{ product.id }}">Agregar al carrito</button>
 
       <!–- Boton para editar-–>
       <a href="{% url 'products:productUpdate' slug=product.slug %}" class="btn btn-outline-primary">Editar</a>

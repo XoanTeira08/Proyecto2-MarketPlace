@@ -23,7 +23,7 @@ class ProductListView(generic.ListView):
 class ProductCreateView(generic.CreateView):
     model = Product
     template_name = 'productCreate.html'
-    fields = ['name', 'description', 'price', 'category', 'imagen']
+    fields = ['name', 'description', 'price', 'category', 'imagen', 'shop']
 
     def form_valid(self, form):
         product = form.save(commit=False)

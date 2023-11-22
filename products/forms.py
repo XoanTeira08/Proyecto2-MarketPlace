@@ -5,13 +5,14 @@ from categorias.models import Categoria
 
 class ProductsForm(ModelForm):
     model= Product
-    fields= ['name', 'description', 'price', 'category', 'imagen']
+    fields= ['name', 'description', 'price', 'category', 'imagen', 'shop']
     labels= {
         'name': 'Nombre del producto',
         'description': 'Descripcion del producto',
         'price': 'Precio del producto',
         'category': 'Categoria del producto',
         'imagen': 'Imagen del producto',
+        'shop': 'Tienda',
     }
     widgets= {
         'name': forms.TextInput(attrs={'class': 'form-control'}),
@@ -19,6 +20,7 @@ class ProductsForm(ModelForm):
         'price': forms.NumberInput(attrs={'class': 'form-control', 'min': 0, 'max': 10000}),
         'category': forms.Select(attrs={'class': 'form-control'}),
         'imagen': forms.FileInput(attrs={'class': 'form-control'}),
+        'shop': forms.Select(attrs={'class': 'form-control'}),
     }
 
 class ReviewForm(ModelForm):

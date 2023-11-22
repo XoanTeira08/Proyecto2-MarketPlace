@@ -9,4 +9,6 @@ urlpatterns = [
     path('logout/',views.logoutUser, name="logout"),
     path('register/',views.registerPage, name="register"),
     path('customersupport/',views.CustomerSupportView.as_view(), name="customerSupport"),
+    path("ShoppingCart",views.ShoppingCart, name="Cart"),
+    path("AddToCart",views.AddToCart, name="Add"),
 ]

@@ -16,7 +16,11 @@
               </li>
               <li class="nav-item">
                 <a class="nav-link active" href="{% url 'main:customerSupport' %}">Atencion al cliente</a>
+              </li>
              {% if user.is_authenticated %}
+             <li class="nav-item">
+              <a class="nav-link active" href="{% url 'main:Cart' %}">Carrito de Compras</a>
+            </li>
              <li class="nav-item">
               <a class="nav-link active" href="{% url 'main:logout' %}" tabindex="-1" aria-disabled="true">Salir</a>
             </li>

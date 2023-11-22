@@ -26,18 +26,23 @@
             {{ form.description }}
         </div>
 
+        <label for="exampleFormControlTextarea1" class="form-label">Precio</label>
         <div class="input-group mb-3">
             <span class="input-group-text">$</span>
             {{ form.price }}
             <span class="input-group-text"></span>
         </div>
 
+        <label for="exampleFormControlTextarea1" class="form-label">Categoria</label>
         {{ form.category }}
 
+        <label for="formFile" class="form-label">Imagen del producto</label>
         <div class="mb-3">
-            <label for="formFile" class="form-label">Imagen del producto</label>
             {{ form.imagen }}
         </div>
+
+        <label for="exampleFormControlTextarea1" class="form-label">Tienda</label>
+        {{ form.shop }}
 
         <button type="submit" class="btn btn-outline-success" style="align-self: center;">Agregar</button>
     </form>

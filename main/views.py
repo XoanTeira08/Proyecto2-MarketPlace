@@ -6,6 +6,9 @@ from django.contrib.auth import authenticate,login,logout
 from .forms import CreateUserForm, LoginForm
 from categorias.models import Categoria
 from .models import CustomerSupport
+from products.models import Product, CartItem, Cart
+from django.http import JsonResponse
+import json
 
 # Create your views here.
 def home(request):
@@ -63,4 +66,19 @@ class CustomerSupportView(generic.CreateView):
     def form_valid(self, form):
         form.instance.user = self.request.user
         return super().form_valid(form)
-    
+
+def ShoppingCart (request):
+    context = {}
+    return render(request, 'cart.html',context)
+
+def AddToCart (request):
+    data=json.loads(request.body)
+    product_id= data["id"]
+    product= Product.objects.get(id=product_id)
+
+    if request.user.is_authenticated:
+        cart, created= Cart.objects.get_or_create(user=request.user, completed=False)
+        cartItem, created= CartItem.objects.get_or_create(cart=cart, product=product)
+        print(cart)
+        
+    return JsonResponse("Funciona", safe=False)
