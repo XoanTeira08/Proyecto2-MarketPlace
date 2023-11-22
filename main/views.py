@@ -78,7 +78,9 @@ def AddToCart (request):
 
     if request.user.is_authenticated:
         cart, created= Cart.objects.get_or_create(user=request.user, completed=False)
-        cartItem, created= CartItem.objects.get_or_create(cart=cart, product=product)
-        print(cart)
+        cartitem, created= CartItem.objects.get_or_create(cart=cart, product=product)
+        cartitem.quantity +=1
+        cartitem.save()
+        print(cartitem)
         
     return JsonResponse("Funciona", safe=False)
