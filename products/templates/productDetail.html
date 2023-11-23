@@ -28,18 +28,45 @@
 
       <!–- Boton para eliminar-–>
       <a href="{% url 'products:productDelete' slug=product.slug %}" class="btn btn-outline-danger">Eliminar</a>
-      
+      <br>
+          <!------------- PAYPAL BUTTONS HERE  --------------------->
+          <br>
+          <div id="paypal-button-container"></div>
+          
+          <!-- Include the PayPal JavaScript SDK -->
+          <script
+            src="https://www.paypal.com/sdk/js?client-id=AQ7rlKgckBWsOiilQiRfBw4FCeXtuDztA__MSSnS8RYwVa_nilupSjXqWeRmr5Zu7Q53sb1kTtWoEtXn&currency=USD"></script>
+          
+          <script>
+            // Render the PayPal button into #paypal-button-container
+            paypal.Buttons({
+
+              // Set up the transaction
+              createOrder: function (data, actions) {
+                return actions.order.create({
+                  purchase_units: [{
+                    amount: {
+                      value: '{{ product.price }}'
+                    }
+                  }]
+                });
+              },
+
+              // Finalize the transaction
+              onApprove: function (data, actions) {
+                return actions.order.capture().then(function (details) {
+                  // Show a success message to the buyer
+                  alert('Transaction completed by ' + details.payer.name
+                    .given_name + '!');
+                });
+              }
+            }).render('#paypal-button-container');
+          </script>
+          </div>
+          
+          <!---------------------------- paypal button ----------------------------------------->
     </div>
   </div>
-
-  <!–-PayPal-–>
-  <div>
-    <h2 class="display-6">PayPal</h2>
-    <div id="paypal-button-container">
-      {{ form.render }}
-    </div>
-  </div>
-
 
   <!–- Reviews-–>
   <br>
