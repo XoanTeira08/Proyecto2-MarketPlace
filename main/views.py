@@ -68,8 +68,15 @@ class CustomerSupportView(generic.CreateView):
         return super().form_valid(form)
 
 def ShoppingCart (request):
-    context = {}
-    return render(request, 'cart.html',context)
+    cart=None
+    cartitems= []
+
+    if request.user.is_authenticated:
+        cart, created= Cart.objects.get_or_create(user=request.user, completed=False)
+        cartitems= cart.cartitems.all()
+
+    context = {"cart":cart, "items":cartitems}
+    return render(request, 'main/ShoppingCart.html', context)
 
 def AddToCart (request):
     data=json.loads(request.body)
@@ -81,6 +88,7 @@ def AddToCart (request):
         cartitem, created= CartItem.objects.get_or_create(cart=cart, product=product)
         cartitem.quantity +=1
         cartitem.save()
+        num_of_items= cart.num_of_items
         print(cartitem)
         
-    return JsonResponse("Funciona", safe=False)
+    return JsonResponse(num_of_items, safe=False)
