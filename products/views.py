@@ -7,7 +7,7 @@ from django.views import generic
 from django.urls import reverse
 from django.contrib import messages
 from django.shortcuts import redirect, get_object_or_404, render
-from paypal.standard.forms import PayPalPaymentsForm
+
 
 # Create your views here.
 class ProductListView(generic.ListView):
@@ -95,17 +95,4 @@ class ProductDeleteView (generic.DeleteView):
     def get_success_url(self):
         return reverse('categorias:categoryList')
     
-def paypal(request):
-    paypal_dict = {
-        "business": "id@bussiness.example.com",
-        "amount": "1.00",
-        "currency_code": "USD",
-        "item_name": "name of the item",
-        "notify_url": request.build_absolute_uri(reverse('paypal-ipn')),
-        "return": request.build_absolute_uri(reverse('payment_done')),
-        "cancel_return": request.build_absolute_uri(reverse('payment_cancelled')),
-    }
-    form = PayPalPaymentsForm(initial=paypal_dict)
-    context = {"form": form}
-    return render(request, 'categories.html', context)
 
