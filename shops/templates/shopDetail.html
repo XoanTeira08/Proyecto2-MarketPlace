@@ -20,8 +20,8 @@
 
     <br>
 
-   
 
+  
 <br>
 <!–- Productos -–>
 <div class="container">
@@ -50,5 +50,25 @@
       </div>
     </a>
     {% endfor %}
+
+    <!–- Reviews-–>
+    <br>
+    <h3 class="display-6">Reviews</h3>
+    {% for review in reviewShop %}
+    <div class="card mb-3" >
+      <div class="card-body">
+        <!--<h5 class="card-title">Card title</h5>-->
+        <h6 class="card-subtitle mb-2 text-body-secondary">Puntaje: {{review.score}}</h6>
+        <p class="card-text">{{ review.review}}</p>
+        <h6 class="card-subtitle mb-2 text-body-secondary">Review creada por: {{review.user}}</h6>
+        <p class="card-text"><small class="text-body-secondary">{{review.created_at}}</small></p>
+        <!--<a href="#" class="card-link">Car</a>-->
+      </div>
+    </div>
+    {% endfor %}
+    <br>
+
+    <!–- Boton para hacer reviews-–>
+    <a href="{% url 'shops:reviewShopCreate' nombre_tienda=shop.slug %}" class="btn btn-outline-primary">Hacer Review</a>
 
     {% endblock %}

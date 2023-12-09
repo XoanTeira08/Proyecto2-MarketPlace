@@ -19,3 +19,19 @@ class Shop(models.Model):
 
     def __str__(self) -> str:
         return self.name    
+    
+class ReviewShop(models.Model):
+    class Meta:
+        verbose_name_plural = 'ReviewsShop'
+        verbose_name= 'ReviewShop'
+    
+
+    shop= models.ForeignKey(Shop, on_delete=models.CASCADE)
+    review= models.TextField()
+    user= models.ForeignKey(User, on_delete=models.CASCADE)
+    created_at= models.DateTimeField(auto_now_add=True)
+    score= models.IntegerField()
+
+
+    def __str__(self) -> str:
+        return f' {self.review} {self.created_at} {self.score} {self.shop}'
