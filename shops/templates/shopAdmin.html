@@ -1,0 +1,78 @@
+<!–- Cargar css y extras -–>
+{% extends 'main/base.html' %}
+{% load static %}
+{% block title %}Tienda{% endblock %}
+
+<!–- Titulo -–>
+<br>
+    <h1 style="text-align:center">Administrar tienda</h1>
+<br>
+
+{% block content %}
+<div class="card">
+    <div class="card-body">
+        
+        <!–- Titulo -–>
+        <h1 class="card-title" style="text-align: center;">{{ shop.name}}</h1>
+
+    </div>
+
+    <!–- Imagen -–>
+    {% if shop.imagen %}
+        <img src="{{ shop.imagen.url }}" class="rounded mx-auto d-block" alt="..." style="width: 50%; height: 50%;">
+    {% endif %}
+    
+
+    <br>
+
+
+  
+<br>
+<!–- Productos -–>
+<div class="container">
+    <br>
+    <h2 class="display-6">Productos</h2>
+    {% for product in shop.product_set.all %}
+    <a href="{% url 'products:productDetail' slug=product.slug %}">
+    <div class="card mb-3" style="max-width: 540px;">
+        <div class="row g-0">
+          <div class="col-md-4">
+
+            <!–- Imagen -–>
+            {% if product.imagen %}
+              <img src="{{product.imagen.url}}" class="img-fluid rounded-start" alt="...">
+            {% endif %}
+
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">{{product.name}}</h5>
+              <p class="card-text">{{product.description}}</p>
+              <p class="card-text"><small class="text-body-secondary">{{product.price}}</small></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </a>
+    {% endfor %}
+
+    <!–- Reviews-–>
+    <br>
+    <h3 class="display-6">Reviews</h3>
+    {% for review in reviewShop %}
+    <div class="card mb-3" >
+      <div class="card-body">
+        <!--<h5 class="card-title">Card title</h5>-->
+        <h6 class="card-subtitle mb-2 text-body-secondary">Puntaje: {{review.score}}</h6>
+        <p class="card-text">{{ review.review}}</p>
+        <h6 class="card-subtitle mb-2 text-body-secondary">Review creada por: {{review.user}}</h6>
+        <p class="card-text"><small class="text-body-secondary">{{review.created_at}}</small></p>
+        <!--<a href="#" class="card-link">Car</a>-->
+      </div>
+    </div>
+    {% endfor %}
+    <br>
+
+
+
+    {% endblock %}
