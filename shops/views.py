@@ -31,6 +31,14 @@ class ShopCreateView(generic.CreateView):
     
     def get_success_url(self):
         return reverse('main:home')
+    
+class ShopUpdateView(generic.UpdateView):
+    model = Shop
+    template_name = 'shopUpdate.html'
+    form_class = ShopForm
+
+    def get_success_url(self):
+        return reverse('main:home')
 
 class ShopDetailView(generic.DetailView):
     model = Shop

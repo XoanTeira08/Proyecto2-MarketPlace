@@ -9,6 +9,6 @@ urlpatterns = [
     path('<slug:slug>/', views.ShopDetailView.as_view(), name="shopDetail"),
     path('crearResena/<str:nombre_tienda>/', views.reviewShopCreateView.as_view(), name="reviewShopCreate"),
     path('AdministrarTienda/<slug:slug>/', views.ShopAdminView.as_view(), name="shopAdmin"),
-    #path('actualizarTienda/<slug:slug>/', views.ShopUpdateView.as_view(), name="shopUpdate"),
+    path('actualizarTienda/<slug:slug>/', views.ShopUpdateView.as_view(), name="shopUpdate"),
     #path('eliminarTienda/<slug:slug>/', views.ShopDeleteView.as_view(), name="shopDelete"),
 ]

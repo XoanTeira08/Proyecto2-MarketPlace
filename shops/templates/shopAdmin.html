@@ -21,7 +21,11 @@
     {% if shop.imagen %}
         <img src="{{ shop.imagen.url }}" class="rounded mx-auto d-block" alt="..." style="width: 50%; height: 50%;">
     {% endif %}
-    
+</div>
+    <!–- Boton para editar-–>
+    <a href="{% url 'shops:shopUpdate' slug=shop.slug %}" class="btn btn-outline-primary">Editar</a>
+    <br>
+
 
     <br>
 
@@ -55,6 +59,8 @@
       </div>
     </a>
     {% endfor %}
+    <!–- Boton para agregar productos-–>
+    <a href="{% url 'products:productCreate' nombre_tienda=shop.slug %}" class="btn btn-outline-primary">Agregar Producto</a>
 
     <!–- Reviews-–>
     <br>
