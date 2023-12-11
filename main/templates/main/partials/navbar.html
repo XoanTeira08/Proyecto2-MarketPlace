@@ -11,8 +11,14 @@
               <li class="nav-item">
                 <a class="nav-link active" aria-current="page" href="{% url 'main:home' %}">Home</a>
               </li>
-              <li class="nav-item">
-                <a class="nav-link active" href="{% url 'categorias:categoryList' %}">Categorias</a>
+              <li class="nav-item dropdown">
+                <a class="nav-link active dropdown-toggle" href="{% url 'categorias:categoryList' %}" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Ver
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <li><a class="dropdown-item" href="{% url 'categorias:categoryList' %}" >Categorias</a></li>
+                  <li><a class="dropdown-item" href="{% url 'shops:shopList' %}" >Tiendas </a></li>
+                </ul>
               </li>
               <li class="nav-item">
                 <a class="nav-link active" href="{% url 'main:customerSupport' %}">Atencion al cliente</a>
@@ -21,6 +27,15 @@
              <li class="nav-item">
               <a class="nav-link active" href="{% url 'main:Cart' %}">Carrito de Compras {{ cart.num_of_items }}</a>
             </li>
+            {% if user.shop %}
+            <li class="nav-item">
+              <a class="nav-link active" href="{% url 'shops:shopAdmin' slug=user.shop.slug %}">Administrar Tienda</a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+              <a class="nav-link active" href="{% url 'shops:shopCreate' %}">Crear Tienda</a>
+            </li>
+            {% endif %}
              <li class="nav-item">
               <a class="nav-link active" href="{% url 'main:logout' %}" tabindex="-1" aria-disabled="true">Salir</a>
             </li>

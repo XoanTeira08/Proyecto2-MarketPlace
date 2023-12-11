@@ -3,8 +3,9 @@ from django.forms import ModelForm
 from .models import Shop,ReviewShop
 
 class ShopForm(ModelForm):
-    model= Shop
-    fields= ['name', 'imagen']
+    class Meta:
+        model= Shop
+        fields= ['name', 'imagen']
     labels= {
         'name': 'Dale un nombre a la tienda',
         'imagen': 'Imagen del producto',

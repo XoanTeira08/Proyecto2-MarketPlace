@@ -22,12 +22,14 @@
       
       <!–- Boton para agregar al carrito-–>
       <button class="btn btn-outline-primary" value="{{ product.id }}">Agregar al carrito</button>
+      {% if product.shop == user.shop %}
 
       <!–- Boton para editar-–>
       <a href="{% url 'products:productUpdate' slug=product.slug %}" class="btn btn-outline-primary">Editar</a>
 
       <!–- Boton para eliminar-–>
       <a href="{% url 'products:productDelete' slug=product.slug %}" class="btn btn-outline-danger">Eliminar</a>
+      {% endif %}
       <br>
           <!------------- PAYPAL BUTTONS HERE  --------------------->
           <br>

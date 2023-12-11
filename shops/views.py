@@ -6,11 +6,16 @@ from .models import Shop, ReviewShop
 from .forms import ShopForm, ReviewShopForm
 from django.db import models
 # Create your views here.
+class ShopListView(generic.ListView):
+    model = Shop
+    template_name = 'shopList.html'
+    context_object_name = 'shops'
 
+    def get_queryset(self):
+        return Shop.objects.all()
 class ShopCreateView(generic.CreateView):
     model = Shop
     template_name = 'shopCreate.html'
-    fields = ['name', 'imagen']
     form_class = ShopForm
     
     def form_valid(self, form):
@@ -24,6 +29,14 @@ class ShopCreateView(generic.CreateView):
         form.instance.user= self.request.user
         return super().form_valid(form)
     
+    def get_success_url(self):
+        return reverse('main:home')
+    
+class ShopUpdateView(generic.UpdateView):
+    model = Shop
+    template_name = 'shopUpdate.html'
+    form_class = ShopForm
+
     def get_success_url(self):
         return reverse('main:home')
 
@@ -60,4 +73,16 @@ class reviewShopListView(generic.ListView):
     model = ReviewShop
     template_name = 'shopDetail.html'
     context_object_name = 'reviewShop'
+
+class ShopAdminView(generic.DetailView):
+    model = Shop
+    template_name = 'shopAdmin.html'
+    context_object_name = 'shop'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        shop = self.object  
+        reviews = ReviewShop.objects.filter(shop=shop) 
+        context['reviewShop'] = reviews
+        return context
     

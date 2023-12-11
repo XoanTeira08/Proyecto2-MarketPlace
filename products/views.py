@@ -23,12 +23,17 @@ class ProductListView(generic.ListView):
 class ProductCreateView(generic.CreateView):
     model = Product
     template_name = 'productCreate.html'
-    fields = ['name', 'description', 'price', 'category', 'imagen', 'shop']
+    fields = ['name', 'description', 'price', 'category', 'imagen']
 
+    def get_context_data(self, **kwargs):
+        context = super(ProductCreateView, self).get_context_data(**kwargs)
+        context['shop'] = Shop.objects.get(slug=self.kwargs['nombre_tienda'])
+        print(context['shop'])
+        return context
+    
     def form_valid(self, form):
-        product = form.save(commit=False)
-        product.save()
-        messages.success(self.request, 'Producto agregado con exito')
+        form.instance.shop= Shop.objects.get(slug=self.kwargs['nombre_tienda'])
+        form.instance.user= self.request.user
         return super().form_valid(form)
     
     def get_success_url(self):
