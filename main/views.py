@@ -13,7 +13,16 @@ import json
 # Create your views here.
 def home(request):
     category = Categoria.objects.all()
-    return render(request, 'main/home.html', {'category':category})
+    products = Product.objects.all()[3:]
+    return render(request, 'main/home.html', {'category':category, 'products':products})
+
+class ProductHomeListView(generic.ListView):
+    model = Product
+    template_name = 'home.html'
+    context_object_name = 'products'
+
+    def get_queryset(self):
+     return Product.objects.all()[:3]
 
 def loginPage(request):
     error = None
