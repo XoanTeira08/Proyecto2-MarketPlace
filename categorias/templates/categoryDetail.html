@@ -36,7 +36,7 @@
     <h2 class="display-6">Productos</h2>
     {% for product in categoria.product_set.all %}
     <a href="{% url 'products:productDetail' slug=product.slug %}">
-    <div class="card mb-3" style="max-width: 540px;">
+    <div class="card mb-3" style="max-width: 875px;">
         <div class="row g-0">
           <div class="col-md-4">
 
@@ -48,9 +48,9 @@
           </div>
           <div class="col-md-8">
             <div class="card-body">
-              <h5 class="card-title">{{product.name}}</h5>
+              <h3 class="card-title">{{product.name}}</h3>
               <p class="card-text">{{product.description}}</p>
-              <p class="card-text"><small class="text-body-secondary">{{product.price}}</small></p>
+              <h4 class="card-text">${{product.price}}</h4>
             </div>
           </div>
         </div>
