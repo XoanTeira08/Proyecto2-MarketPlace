@@ -30,7 +30,7 @@
           <h4 class="card-title">Precio: ${{product.price}}</h4>
       
           <!–- Boton para agregar al carrito-–>
-          <button class="btn btn-outline-primary" value="{{ product.id }}" style="width: 400px; margin-left: 14%;">Agregar al carrito</button>
+          <button class="btn btn-outline-primary" value="{{ product.id }}" style="width: 400px; margin-left: 14%; background-color: #7cffc4; border-color: #7cffc4;">Agregar al carrito</button>
           <br>
 
             {% if product.shop == user.shop %}
@@ -94,7 +94,7 @@
     {% for review in reviews %}
 
     <div class="card">
-      <div class="card-body">
+      <div class="card-body" style="background-color: #b4cded;">
         <h5 class="card-title">Puntaje: {{ review.score }} / {{ review.review }}</h5>
         <p class="card-text">Review creada por: {{ review.user }}</p>
         <p class="card-text"><small class="text-body-secondary">{{ review.created_at }}</small></p>
