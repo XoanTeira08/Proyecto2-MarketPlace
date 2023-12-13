@@ -14,40 +14,40 @@
         <div class="offcanvas-body">
           <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page" href="{% url 'main:home' %}">Home</a>
+              <a class="nav-link active" aria-current="page" href="{% url 'main:home' %}" style="color: #344966;">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" href="{% url 'main:customerSupport' %}">Atencion al cliente</a>
+              <a class="nav-link active" href="{% url 'main:customerSupport' %}" style="color: #344966;">Atencion al cliente</a>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link active dropdown-toggle" href="{% url 'categorias:categoryList' %}" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <a class="nav-link active dropdown-toggle" href="{% url 'categorias:categoryList' %}" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #344966;">
                 Ver
               </a>
               <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <li><a class="dropdown-item" href="{% url 'categorias:categoryList' %}" >Categorias</a></li>
-                <li><a class="dropdown-item" href="{% url 'shops:shopList' %}" >Tiendas </a></li>
+                <li><a class="dropdown-item" href="{% url 'categorias:categoryList' %}" style="color: #344966;">Categorias</a></li>
+                <li><a class="dropdown-item" href="{% url 'shops:shopList' %}" style="color: #344966;">Tiendas </a></li>
               </ul>
             </li>
 
             {% if user.is_authenticated %}
              <li class="nav-item">
-              <a class="nav-link active" href="{% url 'main:Cart' %}">Carrito de Compras {{ cart.num_of_items }}</a>
+              <a class="nav-link active" href="{% url 'main:Cart' %}" style="color: #344966;">Carrito de Compras {{ cart.num_of_items }}</a>
             </li>
             {% if user.shop %}
             <li class="nav-item">
-              <a class="nav-link active" href="{% url 'shops:shopAdmin' slug=user.shop.slug %}">Administrar Tienda</a>
+              <a class="nav-link active" href="{% url 'shops:shopAdmin' slug=user.shop.slug %}" style="color: #344966;">Administrar Tienda</a>
             </li>
             {% else %}
             <li class="nav-item">
-              <a class="nav-link active" href="{% url 'shops:shopCreate' %}">Crear Tienda</a>
+              <a class="nav-link active" href="{% url 'shops:shopCreate' %}" style="color: #344966;">Crear Tienda</a>
             </li>
             {% endif %}
              <li class="nav-item">
-              <a class="nav-link active" href="{% url 'main:logout' %}" tabindex="-1" aria-disabled="true">Salir</a>
+              <a class="nav-link active" href="{% url 'main:logout' %}" tabindex="-1" aria-disabled="true" style="color: #344966;">Salir</a>
             </li>
             {% else %}
               <li class="nav-item">
-                <a class="nav-link active" href="{% url 'main:login' %}" tabindex="-1" aria-disabled="true">Login</a>
+                <a class="nav-link active" href="{% url 'main:login' %}" tabindex="-1" aria-disabled="true" style="color: #344966;">Login</a>
               </li>
               {% endif %}
 
