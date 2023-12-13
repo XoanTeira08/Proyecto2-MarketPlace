@@ -7,88 +7,107 @@
 <!–- Titulo -–>
 <br>
 <div class="container">
+
   <!–-Productos-–>
-  <div class="card mb-3">
+  <div class="card mb-3" style="max-width: 900px;">
+    <div class="row g-0">
+      <div class="col-md-4">
 
-    <!–- Imagen -–>
-    {% if product.imagen %}
-      <img src="{{product.imagen.url}}" class="card-img-top" alt="...">
-    {% endif %}
-    <div class="card-body">
-      <h5 class="card-title">{{product.name}}</h5>
-      <p class="card-text">{{product.description}}</p>
-      <a href="{% url 'shops:shopDetail' slug=shop.slug %}"<h6 class="card-title"> Vendido por: {{product.shop}}</h6></a>
-      <h6 class="card-title">{{product.price}}</h6>
-      
-      <!–- Boton para agregar al carrito-–>
-      <button class="btn btn-outline-primary" value="{{ product.id }}">Agregar al carrito</button>
-      {% if product.shop == user.shop %}
+        <!–- Imagen -–>
+        {% if product.imagen %}
+          <img src="{{product.imagen.url}}" class="card-img-top" alt="...">
+        {% endif %}
+      </div>
 
-      <!–- Boton para editar-–>
-      <a href="{% url 'products:productUpdate' slug=product.slug %}" class="btn btn-outline-primary">Editar</a>
+      <div class="col-md-8">
+        <div class="card-body">
 
-      <!–- Boton para eliminar-–>
-      <a href="{% url 'products:productDelete' slug=product.slug %}" class="btn btn-outline-danger">Eliminar</a>
-      {% endif %}
-      <br>
-          <!------------- PAYPAL BUTTONS HERE  --------------------->
+          <!–- Nombre, descripcion, precio y vendedor -–>
+          <h3 class="card-title">{{product.name}}</h3>
+          <p class="card-text">{{product.description}}</p>
+          <a href="{% url 'shops:shopDetail' slug=shop.slug %}"<h6 class="card-title"> Vendido por: {{product.shop}} <br></h6></a>
           <br>
-          <div id="paypal-button-container"></div>
-          
-          <!-- Include the PayPal JavaScript SDK -->
-          <script
-            src="https://www.paypal.com/sdk/js?client-id=AQ7rlKgckBWsOiilQiRfBw4FCeXtuDztA__MSSnS8RYwVa_nilupSjXqWeRmr5Zu7Q53sb1kTtWoEtXn&currency=USD"></script>
-          
-          <script>
-            // Render the PayPal button into #paypal-button-container
-            paypal.Buttons({
+          <h4 class="card-title">Precio: ${{product.price}}</h4>
+      
+          <!–- Boton para agregar al carrito-–>
+          <button class="btn btn-outline-primary" value="{{ product.id }}" style="width: 400px; margin-left: 14%;">Agregar al carrito</button>
+          <br>
 
-              // Set up the transaction
-              createOrder: function (data, actions) {
-                return actions.order.create({
-                  purchase_units: [{
-                    amount: {
-                      value: '{{ product.price }}'
+            {% if product.shop == user.shop %}
+
+              <br>
+              <!–- Boton para editar-–>
+              <a href="{% url 'products:productUpdate' slug=product.slug %}" class="btn btn-outline-primary" style="width: 190px; margin-left: 14%;">Editar</a>
+              
+              <!–- Boton para eliminar-–>
+              <a href="{% url 'products:productDelete' slug=product.slug %}" class="btn btn-outline-danger" style="width: 190px; margin-left: 3%;">Eliminar</a>
+              <br>
+            {% endif %}
+
+            <!------------- PAYPAL BUTTONS HERE  --------------------->
+            <br>
+          <div id="paypal-button-container" style="width: 400px; margin-left: 14%;"></div>
+          
+            <!-- Include the PayPal JavaScript SDK -->
+            <script
+              src="https://www.paypal.com/sdk/js?client-id=AQ7rlKgckBWsOiilQiRfBw4FCeXtuDztA__MSSnS8RYwVa_nilupSjXqWeRmr5Zu7Q53sb1kTtWoEtXn&currency=USD"></script>
+          
+            <script>
+            // Render the PayPal button into #paypal-button-container
+              paypal.Buttons({
+
+                // Set up the transaction
+                createOrder: function (data, actions) {
+                  return actions.order.create({
+                    purchase_units: [{
+                      amount: {
+                        value: '{{ product.price }}'
                     }
                   }]
                 });
               },
 
-              // Finalize the transaction
-              onApprove: function (data, actions) {
-                return actions.order.capture().then(function (details) {
-                  // Show a success message to the buyer
-                  alert('Transaction completed by ' + details.payer.name
-                    .given_name + '!');
-                });
-              }
-            }).render('#paypal-button-container');
-          </script>
+                // Finalize the transaction
+                onApprove: function (data, actions) {
+                  return actions.order.capture().then(function (details) {
+                    // Show a success message to the buyer
+                    alert('Transaction completed by ' + details.payer.name
+                      .given_name + '!');
+                  });
+                }
+              }).render('#paypal-button-container');
+            </script>
           </div>
-          
-          <!---------------------------- paypal button ----------------------------------------->
+          <!------------- PAYPAL BUTTONS HERE  --------------------->
+
+        </div>
+      </div>
     </div>
   </div>
+  <br>
 
   <!–- Reviews-–>
   <br>
-  <h3 class="display-6">Reviews</h3>
-  {% for review in reviews %}
-  <div class="card mb-3" >
-    <div class="card-body">
-      <!--<h5 class="card-title">Card title</h5>-->
-      <h6 class="card-subtitle mb-2 text-body-secondary">Puntaje: {{review.score}}</h6>
-      <p class="card-text">{{ review.review}}</p>
-      <h6 class="card-subtitle mb-2 text-body-secondary">Review creada por: {{review.user}}</h6>
-      <p class="card-text"><small class="text-body-secondary">{{review.created_at}}</small></p>
-      <!--<a href="#" class="card-link">Car</a>-->
+  <div class="container">
+    <h3 class="display-6">Reviews</h3>
+
+    {% for review in reviews %}
+
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Puntaje: {{ review.score }} / {{ review.review }}</h5>
+        <p class="card-text">Review creada por: {{ review.user }}</p>
+        <p class="card-text"><small class="text-body-secondary">{{ review.created_at }}</small></p>
+      </div>
     </div>
+    <br>
+    
+    {% endfor %}
+    
   </div>
-  {% endfor %}
-  <br>
   
   <!–- Boton para hacer reviews-–>
-  <a href="{% url 'products:reviewCreate' nombre_producto=product.slug %}" class="btn btn-outline-primary">Hacer Review</a>
+  <a href="{% url 'products:reviewCreate' nombre_producto=product.slug %}" class="btn btn-outline-primary" style="margin-left: 185px; margin-bottom: 20px;">Hacer Review</a>
 
 </div>
 
