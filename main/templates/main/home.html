@@ -65,11 +65,15 @@ Start Content
 </div>
 <!-- carrousell -->
 <br>
+<br>
+    <h1 style="text-align:center">Recien agregados</h1>
+<br>
 
 <div class="container">
 
 <div class="row">
   {% for product in products %}
+  <a href="{% url 'products:productDetail' slug=product.slug %}">
       <div class="col-md-4">
           <div class="card">
               <img src="{{ product.imagen.url }}" class="card-img-top" alt="{{ product.name }}">
