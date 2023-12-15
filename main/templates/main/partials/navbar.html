@@ -1,57 +1,61 @@
 {% load static %}
 <header>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">Los Dealers</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <div class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="{% url 'main:home' %}">Home</a>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link active dropdown-toggle" href="{% url 'categorias:categoryList' %}" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Ver
-                </a>
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                  <li><a class="dropdown-item" href="{% url 'categorias:categoryList' %}" >Categorias</a></li>
-                  <li><a class="dropdown-item" href="{% url 'shops:shopList' %}" >Tiendas </a></li>
-                </ul>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" href="{% url 'main:customerSupport' %}">Atencion al cliente</a>
-              </li>
-             {% if user.is_authenticated %}
+  <nav class="navbar bg-body-tertiary fixed-top stick-top" style="background-color: #344966; color: white;">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="{% url 'main:home' %}">Los Dealers Store</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"><img src="{% static 'images/menu-hamburguesa-blanco.png' %}" class="d-block w-100" alt="..."></span>
+      </button>
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasNavbarLabel" style="color: #344966;">Los Dealers Store</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="{% url 'main:home' %}" style="color: #344966;">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="{% url 'main:customerSupport' %}" style="color: #344966;">Atencion al cliente</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link active dropdown-toggle" href="{% url 'categorias:categoryList' %}" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false" style="color: #344966;">
+                Ver
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <li><a class="dropdown-item" href="{% url 'categorias:categoryList' %}" style="color: #344966;">Categorias</a></li>
+                <li><a class="dropdown-item" href="{% url 'shops:shopList' %}" style="color: #344966;">Tiendas </a></li>
+              </ul>
+            </li>
+
+            {% if user.is_authenticated %}
              <li class="nav-item">
-              <a class="nav-link active" href="{% url 'main:Cart' %}">Carrito de Compras {{ cart.num_of_items }}</a>
+              <a class="nav-link active" href="{% url 'main:Cart' %}" style="color: #344966;">Carrito de Compras {{ cart.num_of_items }}</a>
             </li>
             {% if user.shop %}
             <li class="nav-item">
-              <a class="nav-link active" href="{% url 'shops:shopAdmin' slug=user.shop.slug %}">Administrar Tienda</a>
+              <a class="nav-link active" href="{% url 'shops:shopAdmin' slug=user.shop.slug %}" style="color: #344966;">Administrar Tienda</a>
             </li>
             {% else %}
             <li class="nav-item">
-              <a class="nav-link active" href="{% url 'shops:shopCreate' %}">Crear Tienda</a>
+              <a class="nav-link active" href="{% url 'shops:shopCreate' %}" style="color: #344966;">Crear Tienda</a>
             </li>
             {% endif %}
              <li class="nav-item">
-              <a class="nav-link active" href="{% url 'main:logout' %}" tabindex="-1" aria-disabled="true">Salir</a>
+              <a class="nav-link active" href="{% url 'main:logout' %}" tabindex="-1" aria-disabled="true" style="color: #344966;">Salir</a>
             </li>
             {% else %}
               <li class="nav-item">
-                <a class="nav-link active" href="{% url 'main:login' %}" tabindex="-1" aria-disabled="true">Login</a>
+                <a class="nav-link active" href="{% url 'main:login' %}" tabindex="-1" aria-disabled="true" style="color: #344966;">Login</a>
               </li>
               {% endif %}
 
           </ul>
-            </div>
-            <form class="d-flex">
-              <!--<input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              <button class="btn btn-outline-light" type="submit">Search</button>-->
-            </form>
-          </div>
         </div>
-      </nav> 
+      </div>
+    </div>
+  </nav>
+  <br>
+  <br>
 </header>
